@@ -1,0 +1,72 @@
+SQL vs MongoDB (Mental Model First)
+
+MongoDB              SQl
+database            database
+collection          table
+document(JSON)       row  
+field               column 
+_id                 PRIMARY KEY
+Schema-less         Schema-based
+$lookup              join
+------------------------------------------
+
+Popular SQL databases
+
+MySQL -> Most common, fast, simple
+PostgreSQL -> Advanced, enterprise, JSON support 
+SQLite -> Local/testing
+MariaDB -> MySQL alternative
+
+we'll assume MySQL (same logic applies to Postgres).
+---------------------------------------------------
+installing & Setting Up MySQL 
+
+ubuntu:
+sudo apt update
+sudo apt install mysql-server
+
+check:
+mysql --version
+
+login:
+sudo mysql 
+
+create user(recommended)
+
+CREATE USER 'ibrahim'@'localhost' IDENTIFIED BY 'ibrahim';
+GRANT ALL PRIVILEGES ON *.* TO 'ibrahim'@'localhost';
+FLUSH PRIVILEGES;
+---------------------------------------------------
+Core SQL Concepts (VI)
+
+SHOW DATABASES;              -> shows all databases.
+CREATE DATABASE <dbname>;    -> creates a new database.
+USE <dbname>;                -> uses selected database
+SELECT DATABASE();           -> shows database you are inside or using
+DROP DATABASE <dbname>       -> deletes a database.
+
+// CREATE TABLES
+ex:
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) UNIQUE NOT NULL
+);
+
+SHOW TABLES;               -> Shows all the tables in the database.
+SELECT * FROM <table name> -> selects all the data from the given tableName.
+INSERT INTO <table name> VALUES (2,"RAYYAN","rayyan@gmail.com"); -> inserting values in tables
+UPDATE <table name> SET <key> = <changing value> WHERE <poiniting key> = <vale>; -> updating specific value
+DELETE FROM <table name> WHERE <key> = <value>; -> deletes a specific row from given condition meet
+
+
+DESCRIBE <tablename>;      -> display the structure or schema of a database table.
+
+// insert single row
+INSERT INTO users (name, email) VALUES ('Suhail', 'suhail@gmail.com');
+
+// insert multiple rows
+INSERT INTO users (name, email)
+VALUES 
+('Ali', 'ali@gmail.com'),
+('John', 'john@gmail.com');
